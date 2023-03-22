@@ -14,8 +14,8 @@
     $item = new Contacto($db);
     
     // Verificar si se proporcionó un ID válido
-    if(isset($_GET['id']) && $_GET['id'] != ""){
-        $item->id = $_GET['id'];
+    if(isset($_GET['nombre']) && $_GET['nombre'] != ""){
+        $item->nombre = $_GET['nombre'];
         $stmt = $item->GetOneContact();
         $num = $stmt->rowCount();
     
@@ -28,7 +28,7 @@
             extract($row);
     
             $contacto_item = array(
-                "id" => $id,
+                //"id" => $id,
                 "nombre" => $nombre,
                 "telefono" => $telefono,
                 "latitud" => $latitud,

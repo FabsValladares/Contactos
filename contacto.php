@@ -14,6 +14,7 @@ public $nombre;
 public $telefono;
 public $longitud;
 public $latitud;
+public $imagen;
 
 
 public function __construct($db)
@@ -32,7 +33,8 @@ public function __construct($db)
     				nombre   = :nombre,
     				telefono = :telefono,
     				latitud  = :latitud,
-    				longitud	  =:longitud";
+    				longitud	  =:longitud,
+                    imagen	  =:imagen";
 
       
     	$comando = $this->con->prepare($consulta);
@@ -42,6 +44,7 @@ public function __construct($db)
         $this->telefono = htmlspecialchars(strip_tags($this->telefono));
         $this->latitud = htmlspecialchars(strip_tags($this->latitud));
         $this->longitud = htmlspecialchars(strip_tags($this->longitud));
+        $this->imagen = htmlspecialchars(strip_tags($this->imagen));
 		
 
         // paso de parametros
@@ -49,6 +52,7 @@ public function __construct($db)
 		$comando->bindParam(":telefono", $this->telefono);
 		$comando->bindParam(":latitud", $this->latitud);
 		$comando->bindParam(":longitud", $this->longitud);
+        $comando->bindParam(":imagen", $this->imagen);
 
 		if($comando->execute())
 		{
@@ -60,7 +64,7 @@ public function __construct($db)
     // Read lista completa
     public function GetContactos()
     {
-    	$sql = "SELECT id, nombre, telefono, latitud, longitud FROM " .$this->table . "";
+    	$sql = "SELECT id, nombre, telefono, latitud, longitud, imagen FROM " .$this->table . "";
     	$stmt = $this->con->prepare($sql);
     	$stmt->execute();
 
@@ -70,10 +74,10 @@ public function __construct($db)
     // Read un Alumno
     public function GetOneContact()
 {
-    $sql = "SELECT id, nombre, telefono,latitud,longitud FROM " . $this->table . " WHERE id = ? LIMIT 0,1";
+    $sql = "SELECT  nombre, telefono,latitud,longitud, imagen FROM " . $this->table . " WHERE nombre = ?";
 
     $stmt = $this->con->prepare($sql);
-    $stmt->bindParam(1, $this->id);
+    $stmt->bindParam(1, $this->nombre);
     $stmt->execute();
 
     return $stmt;
@@ -86,7 +90,8 @@ public function __construct($db)
                     nombre   = :nombre,
                     telefono = :telefono,
                     latitud  = :latitud,
-                    longitud =:longitud
+                    longitud =:longitud,
+                    imagen =:imagen
                     WHERE id =  :id";
 
     	$comando = $this->con->prepare($consulta);
@@ -97,6 +102,7 @@ public function __construct($db)
         $this->telefono = htmlspecialchars(strip_tags($this->telefono));
         $this->latitud = htmlspecialchars(strip_tags($this->latitud));
         $this->longitud = htmlspecialchars(strip_tags($this->longitud));
+        $this->imagen = htmlspecialchars(strip_tags($this->imagen));
 		
 
         // paso de parametros
@@ -105,6 +111,7 @@ public function __construct($db)
 		$comando->bindParam(":telefono", $this->telefono);
 		$comando->bindParam(":latitud", $this->latitud);
 		$comando->bindParam(":longitud", $this->longitud);
+        $comando->bindParam(":imagen", $this->imagen);
 
 
 		if($comando->execute())

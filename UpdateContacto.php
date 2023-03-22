@@ -19,13 +19,13 @@
         $item->telefono = $data->telefono;
         $item->latitud = $data->latitud;
         $item->longitud = $data->longitud;
-        //$item->foto =base64_decode( $data->foto);
+        $item->imagen = $data->imagen;
     
        
     if($item->updateContacto()){
-        echo json_encode("Contacto actualizado.");
+        echo json_encode(array("message" => " Contacto Actualizado"));
     } else{
-        echo json_encode("Contacto no actualizado");
+        echo json_encode(array("message" => " Error al actualizar contacto"));
     }
     
 ?>

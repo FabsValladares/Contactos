@@ -4,7 +4,7 @@
 
         private $host = "localhost";
 
-        private $database_name = "pmo1exa2";
+        private $database_name = "contactos";
 
         private $username = "root";
     

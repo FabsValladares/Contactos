@@ -27,12 +27,13 @@ if($resp->rowCount()>0)
              "nombre" => $nombre,
              "telefono" => $telefono,
              "latitud" => $latitud,
-             "longitud" => $longitud);
-             //"foto" => $foto);
+             "longitud" => $longitud,
+             "imagen" => $imagen);
 
              array_push($Contactarray,$e);
    }
-   echo json_encode($Contactarray);
+   $response = array("datos" => $Contactarray);
+   echo json_encode($response);
 
 }else{
     

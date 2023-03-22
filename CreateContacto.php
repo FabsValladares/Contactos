@@ -9,7 +9,7 @@ header("Access-Control-Max-Age: 3600");
 
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-//permitir solo el meto http post
+//permitir solo el meto http postipconfig
 
 include_once 'Database.php';
 include_once 'contacto.php';
@@ -27,7 +27,7 @@ $item->nombre = $data->nombre;
 $item->telefono = $data->telefono;
 $item->latitud = $data->latitud;
 $item->longitud = $data->longitud;
-//$item->foto =base64_decode( $data->foto);
+$item->imagen = $data->imagen;
 
 
 if($item->createContacto()){
